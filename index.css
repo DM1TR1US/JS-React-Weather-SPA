@@ -1,0 +1,103 @@
+header{
+    background-color: cornflowerblue;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 99vw;
+    min-height: 98vh;
+}
+.chooseCity{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+    background-color: cornflowerblue;
+}
+
+.chooseCity > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+    border: 2px solid black;
+    height: 80%; max-height: 80%;
+    min-width: 15%; max-width: 25%;
+    transition-duration: 0.2s;
+}
+
+.chooseCity > div:hover{
+    margin-left: 50px;
+    border: 2px solid rgb(205, 207, 63);
+}
+
+.added_Name:after{
+    content: '';
+    width: 0; 
+    height: 3px;
+    display: block;
+    margin-top: 5px;
+    transition: width 0.2s ease;
+    -webkit-transition: width 0.2s ease;
+}
+
+.chooseCity > div:hover .added_Name:after{
+    width: 100%;
+    background: #fff;
+    color: red;
+}
+
+
+.addCity_button{
+    border: 2px solid black;
+    font-size: 500%;
+    height: 80%;
+    width: 15%;
+    background-color: transparent;
+    transition-duration: 0.2s;
+}
+
+.addCity_button:hover{
+    border: 2px solid rgb(205, 207, 63);
+}
+.addCity_button div{
+    transition-duration: 0.2s;
+}
+.addCity_button:hover div{
+    color: rgb(205, 207, 63);
+    transform: rotate(180deg);
+}
+
+
+
+
+table {
+    font-size: 1vw;
+    border-spacing: 0;
+    text-align: center;
+}
+th {
+    background: #eeeeee;
+    color: black;
+    padding: 10px 20px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #e5e5e5;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+th:first-child {
+    border-top-left-radius: 10px;
+}
+td {
+    padding: 10px 20px;
+    font-weight: 500;
+    transition-duration: 0.5s;
+}
