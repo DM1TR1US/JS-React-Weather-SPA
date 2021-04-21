@@ -1,46 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './DetailedInfo.module.css';
-
+import { connect } from 'react-redux';
+import Table from './Table/Table';
+import { updateCity } from '../../redux/reducers/detailedReducer';
 
 const DetailedInfo = (props) => {
 
+    let [selectedCity, newCity] = useState("Moldova");
+    let [detailedInfo, updateDetails] = useState("undefined details");
+    let [tempMin, updateMin] = useState(-100);
+    let [tempMax, updateMax] = useState(100);
+    let [iconId, updateIcon] = useState("03d");
+
+    // useEffect(() => {
+    //     newCity(props.cityName);
+    //     updateDetails(props.detailedWeather);
+    //     updateMin(props.tempMin);
+    //     updateMax(props.tempMax);
+    // }, [props.cityName] );
+
+    useEffect(()=> {
+        newCity(props.cityName);
+    }, [props.cityName]);
+
+    useEffect(() => {
+        props.updateCity(selectedCity);
+        newCity(selectedCity);
+        updateDetails(props.detailedWeather);
+        updateMin(props.tempMin);
+        updateMax(props.tempMax);
+        updateIcon(props.iconId);
+    }, [selectedCity]);
+
     return (
         <div className={s.choosedInfo}>
-            <hi>Kharkiv</hi>
-            <p className={s.weather_article}>Very good day for walking with dog and drinking tea.</p>
-            <p className={s.weather_tempRange}>13-22°C</p>
-            <table>
-                <caption>Detailed info</caption>
-                <tr>
-                    <th>00:00</th>
-                    <th>01:00</th>
-                    <th>02:00</th>
-                    <th>03:00</th>
-                    <th>04:00</th>
-                    <th>05:00</th>
-                    <th>06:00</th>
-                    <th>07:00</th>
-                    <th>08:00</th>
-                    <th>09:00</th>
-                    <th>10:00</th>
-                    <th>11:00</th>
-                    <th>12:00</th>
-                </tr>
-                <tr><td>+5</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>+4</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>+3</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>+2</td><td>'</td><td>'</td><td>'</td><td>'</td><td>+22</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>+1</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>0</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>-1</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>-2</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>-3</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>-4</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-                <tr><td>-5</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td><td>'</td></tr>
-
-            </table>
+            <h1>{selectedCity}<img src= {`http://openweathermap.org/img/wn/${iconId}@2x.png`} alt="weatherico"/></h1>
+            <p className={s.weather_article}>{detailedInfo}</p>
+            <p className={s.weather_tempRange}>{tempMin}-{tempMax} °C</p>
+            <Table />
         </div>
     );
 }
 
-export default DetailedInfo;
+const mapStateToProps = (state) => ({
+    cityName: state.detailedInfo.cityName,
+    mainWeather: state.detailedInfo.mainWeather,
+    detailedWeather: state.detailedInfo.detailedWeather,
+    iconId: state.detailedInfo.iconId,
+    tempMin: state.detailedInfo.tempMin,
+    tempMax: state.detailedInfo.tempMax
+})
+
+export default connect(mapStateToProps, {updateCity})(DetailedInfo);
