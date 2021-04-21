@@ -1,0 +1,26 @@
+table {
+    font-size: 1vw;
+    border-spacing: 0;
+    text-align: center;
+}
+th {
+    background: #eeeeee;
+    color: black;
+    padding: 10px 20px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #e5e5e5;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+th:first-child {
+    border-top-left-radius: 10px;
+}
+td {
+    padding: 10px 20px;
+    font-weight: 500;
+    transition-duration: 0.5s;
+}

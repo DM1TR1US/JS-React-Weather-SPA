@@ -1,0 +1,29 @@
+.chooseCity{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+    background-color: cornflowerblue;
+}
+
+
+.addCity{
+    border: 2px solid black;
+    font-size: 500%;
+    height: 80%;
+    width: 15%;
+    background-color: transparent;
+    transition-duration: 0.2s;
+}
+
+.addCity:hover{
+    border: 2px solid rgb(205, 207, 63);
+}
+.addCity div{
+    transition-duration: 0.2s;
+}
+.addCity:hover div{
+    color: rgb(205, 207, 63);
+    transform: rotate(180deg);
+}
