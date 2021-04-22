@@ -4,7 +4,7 @@ import data from '../localvalues/city.list.json';
 const instance = axios.create({
     baseURL: "https://api.openweathermap.org/data/2.5/",
     params: {
-        // appid: "dc851c430a7d7a7974d756b4b096ef91",
+        appid: "dc851c430a7d7a7974d756b4b096ef91",
         units: "metric"
     }
 })

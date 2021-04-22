@@ -9,7 +9,7 @@ const TEMP_MAX = "TEMP-MAX";
 
 
 let initialState = {
-    cityName: "Please, choose the city",
+    cityName: localStorage.getItem('selectedCity') || "Please, choose the city",
     mainWeather: "",
     detailedWeather: "",
     iconId: "04d",
@@ -67,7 +67,10 @@ export const setCity = (cityName, mainWeather, detailedWeather, iconId, tempMin,
 }
 
 
-export const updateCity = (cityName) => (dispatch) => {
+export const updateCity = (cityName = localStorage.getItem('selectedCity')) => (dispatch) => {
+    if(cityName !== localStorage.getItem('selectedCity')){
+        localStorage.setItem('selectedCity', cityName);
+    }
 
     weatherAPI.getWeather(cityName)
         .then(response => {

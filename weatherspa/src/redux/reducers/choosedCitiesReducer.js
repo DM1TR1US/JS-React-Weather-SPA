@@ -1,11 +1,11 @@
 import { weatherAPI } from "../../api/api";
 
 const ADD_CITY = "ADD-CITY";
-const DELETE_CITY = "ADD-CITY";
+const DELETE_CITY = "DELETE-CITY";
 
 
 let initialState = {
-    cities: ["Moldova", "Kiev"]
+    cities: JSON.parse(localStorage.getItem('citiesArr')) || []
 }
 
 const choosedCitiesReducer = (state = initialState, action) => {
@@ -15,7 +15,7 @@ const choosedCitiesReducer = (state = initialState, action) => {
             if(!stateCopy.cities.includes(action.data))
             {
                 stateCopy.cities.push(action.data);
-
+                localStorage.setItem('citiesArr', JSON.stringify(stateCopy.cities));
                 return stateCopy;
             }
             else
@@ -25,10 +25,10 @@ const choosedCitiesReducer = (state = initialState, action) => {
         }
         case DELETE_CITY: {
             let stateCopy = {...state};
-            if(!stateCopy.cities.includes(action.data))
+            if(stateCopy.cities.includes(action.data))
             {
-                stateCopy.cities.push(action.data);
-
+                stateCopy.cities = stateCopy.cities.filter(el => el !== action.data);
+                localStorage.setItem('citiesArr', JSON.stringify(stateCopy.cities));
                 return stateCopy;
             }
             else

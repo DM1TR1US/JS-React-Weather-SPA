@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { addCity } from '../../redux/reducers/choosedCitiesReducer';
+import { addCity, deleteCity } from '../../redux/reducers/choosedCitiesReducer';
 import { updateCity } from '../../redux/reducers/detailedReducer';
 import AddCity from './AddCIty/AddCity';
 import s from './ChooseCity.module.css';
@@ -23,7 +23,7 @@ const ChooseCity = (props) => {
             <button disabled={visible} onClick={changeVisible} className={s.addCity}>
                 <div>+</div>
             </button>
-            <Cities updateCity={props.updateCity} cities = {cities}/>
+            <Cities updateCity={props.updateCity} cities = {cities} deleteCity={props.deleteCity}/>
             <AddCity addCity={props.addCity} visible={visible} changeVisible = {changeVisible} />
         </div>
     );
@@ -33,4 +33,4 @@ const mapStateToProps = (state) => ({
     cities: state.choosedCities.cities
 })
 
-export default connect(mapStateToProps, {addCity, updateCity})(ChooseCity);
+export default connect(mapStateToProps, {addCity, updateCity, deleteCity})(ChooseCity);

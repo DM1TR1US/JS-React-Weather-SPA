@@ -3,20 +3,22 @@ import s from './Cities.module.css';
 
 
 const City = (props) => {
-
     return (
-        <>
+        <div className={s.citiesMainBlock}>
         {
                 props.cities.map(el => 
-                    <div className={s.cityBlock} onClick={() => props.updateCity(el)}>
-                        <div>
+                <div className={s.cityBlock}>
+                    <div className={s.nameBlock}>
                             <h3 className={s.added_Name}>{el}</h3>
-                        </div>
-                        <p className={s.added_Temperature}>17°C</p>
                     </div>
+                    <div className={s.cityBtns}>
+                    <button onClick={() => props.updateCity(el)}>Details</button>
+                    <button className={s.deleteBtn} onClick={() => props.deleteCity(el)}>Delete</button>
+                    </div>
+                </div>
                 )
         }
-        </>
+        </div>
     );
 }
 

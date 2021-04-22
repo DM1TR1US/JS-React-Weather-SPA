@@ -12,12 +12,9 @@ const DetailedInfo = (props) => {
     let [tempMax, updateMax] = useState(100);
     let [iconId, updateIcon] = useState("03d");
 
-    // useEffect(() => {
-    //     newCity(props.cityName);
-    //     updateDetails(props.detailedWeather);
-    //     updateMin(props.tempMin);
-    //     updateMax(props.tempMax);
-    // }, [props.cityName] );
+    useEffect(() => {
+        props.updateCity(props.cityName);
+    }, []);
 
     useEffect(()=> {
         newCity(props.cityName);
@@ -43,12 +40,17 @@ const DetailedInfo = (props) => {
         updateIcon(props.iconId);
     }, [props.iconId]);
 
+    const updateData = () => {
+        props.updateCity(selectedCity);
+    }
+
     return (
         <div className={s.choosedInfo}>
             <h1>{selectedCity}<img src= {`http://openweathermap.org/img/wn/${iconId}@2x.png`} alt="weatherico"/></h1>
             <p className={s.weather_article}>{detailedInfo}</p>
             <p className={s.weather_tempRange}>{tempMin}-{tempMax} °C</p>
-            <Table />
+            <button onClick={updateData}>Update</button>
+            {/* <Table /> */}
         </div>
     );
 }
