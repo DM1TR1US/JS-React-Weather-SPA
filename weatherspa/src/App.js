@@ -6,7 +6,7 @@ import DetailedInfo from './components/detailedInfo/DetailedInfo';
 function App() {
 
   let ApiTest = () => {
-    console.log(weatherAPI.getWeather("Kharkiv").then(response => response.main.temp_min));
+    console.log(weatherAPI.getCitiesList());
   };
 
   ApiTest();

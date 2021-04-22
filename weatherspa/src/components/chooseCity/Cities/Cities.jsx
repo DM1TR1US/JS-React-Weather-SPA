@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './Cities.module.css';
 
 
 const City = (props) => {
 
     return (
-            <div className={s.cityBlock}>
-                <div>
-                    <h3 className={s.added_Name}>Kharkiv</h3>
-                </div>
-                <p className={s.added_Temperature}>17°C</p>
-            </div>
+        <>
+        {
+                props.cities.map(el => 
+                    <div className={s.cityBlock} onClick={() => props.updateCity(el)}>
+                        <div>
+                            <h3 className={s.added_Name}>{el}</h3>
+                        </div>
+                        <p className={s.added_Temperature}>17°C</p>
+                    </div>
+                )
+        }
+        </>
     );
 }
 

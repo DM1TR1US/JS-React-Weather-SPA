@@ -1,7 +1,13 @@
 .modalAdd{
+    display: flex;
+    flex-direction: column;
     position: absolute;
     width: 300px;
     height: 300px;
     background-color: black;
+    color: red;
+}
+
+.notFound{
     color: red;
 }

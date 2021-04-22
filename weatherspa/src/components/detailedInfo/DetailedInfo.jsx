@@ -6,7 +6,7 @@ import { updateCity } from '../../redux/reducers/detailedReducer';
 
 const DetailedInfo = (props) => {
 
-    let [selectedCity, newCity] = useState("Moldova");
+    let [selectedCity, newCity] = useState("Please, choose the city");
     let [detailedInfo, updateDetails] = useState("undefined details");
     let [tempMin, updateMin] = useState(-100);
     let [tempMax, updateMax] = useState(100);
@@ -21,16 +21,27 @@ const DetailedInfo = (props) => {
 
     useEffect(()=> {
         newCity(props.cityName);
-    }, [props.cityName]);
-
-    useEffect(() => {
-        props.updateCity(selectedCity);
-        newCity(selectedCity);
         updateDetails(props.detailedWeather);
         updateMin(props.tempMin);
         updateMax(props.tempMax);
         updateIcon(props.iconId);
-    }, [selectedCity]);
+    }, [props.cityName]);
+
+    useEffect(() => {
+        updateDetails(props.detailedWeather);
+    }, [props.detailedWeather]);
+
+    useEffect(() => {
+        updateMin(props.tempMin);
+    }, [props.tempMin]);
+
+    useEffect(() => {
+        updateMax(props.tempMax);
+    }, [props.tempMax]);
+
+    useEffect(() => {
+        updateIcon(props.iconId);
+    }, [props.iconId]);
 
     return (
         <div className={s.choosedInfo}>
